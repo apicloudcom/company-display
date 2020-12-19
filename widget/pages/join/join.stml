@@ -50,6 +50,7 @@ export default {
     onitemclick(e) {
       var id = e.currentTarget.dataset.id;
       this.data.viewId = 'content' + id;
+      this.data.viewId = null;
       return;
 
       $util.openWin({
