@@ -1,10 +1,9 @@
 
 class Config{
-    constructor(){
-    }
+    constructor(){}
 }
 
-Config.restUrl = 'https://a6047375483366-dev.apicloud-saas.com/api';
+Config.restUrl = 'https://a6666666666666-pd.apicloud-saas.com/api';
 Config.getbannersList = '/banners/list'; //获取轮播图列表
 Config.getbannersInfo = '/banners/detail'; //获取轮播图详情
 Config.getProjectConfigssInfo = '/project_configs/detail'; //获取系统配置

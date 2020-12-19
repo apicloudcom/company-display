@@ -8,7 +8,9 @@
 			</swiper>
 		</view>
 		<view class="cate">
-			<image style={'width:'+cateItemWidth+'px;height:'+(cateItemWidth*0.41)+'px;'} class="cate-item" src={item} v-for="(item,index) in advantageList"/>
+			<view style={'width:'+cateItemWidth+'px;height:'+(cateItemWidth*0.41)+'px;border-radius:'+($util.isApp()?'0;':'8px;')} class="cate-item" v-for="(item,index) in advantageList">
+				<image class="cate-img" src={item}/>
+			</view>
 		</view>
 		<view class="goods">
 			<rich-text v-if={{product_description}} nodes={product_description} />
@@ -37,7 +39,7 @@
 				return api.winWidth*0.42;
 			},
 			cateItemWidth(){
-				return parseInt((api.winWidth-32)/2);
+				return parseInt((api.winWidth-38)/2);
 			}
 		},
 		methods: {
@@ -159,6 +161,7 @@
 .swiper {
   width: 100%;
   height: 100%;
+  border-radius: 8px;
 }
 .banner-image {
   width: 100%;
@@ -167,11 +170,18 @@
 .cate{
   flex-direction: row;
   flex-wrap: wrap;
-  padding: 0 15px 15px;
+  padding: 0 7px 10px 15px;
 }
 .cate-item{
-  margin-right: 1px;
-  margin-bottom: 5px;
+  margin-right: 8px;
+  margin-bottom: 4px;
+  box-shadow: 0 3px 5px 2px #f1f1f1;
+}
+.cate-img{
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  border: 1px solid #f1f1f1;
 }
 .goods{
   margin-bottom: 4px;
