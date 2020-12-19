@@ -1,0 +1,142 @@
+<template>
+	<scroll-view class="main" scroll-y enable-back-to-top refresher-enabled refresher-triggered={refresherTriggered} onrefresherrefresh={this.onrefresherrefresh} onscrolltolower={this.onscrolltolower}>
+		<view>
+			<view class="item" data-id={item.id} onclick={this.openCaseInfo} v-for="(item, index) in caseList">
+				<image src={item.cover_img} class="item-img"></image>
+				<text class="item-title">{{item.title}}</text>
+			</view>
+		</view>
+        <view class="footer">
+            <text class="loadDesc">{loadStateDesc}</text>
+        </view>
+	</scroll-view>
+</template>
+<script>
+	import {Model} from '../../utils/model.js';
+	import $util from "../../utils/util.js"
+	export default {
+		name: 'case',
+		data() {
+			return{
+				caseList: [],
+				skip: 1,
+				loading: false,
+				refresherTriggered: false,
+				haveMoreData: true
+			}
+		},
+		computed: {
+			loadStateDesc(){
+				if (this.data.loading || this.data.haveMoreData) {
+					return '加载中...';
+				} else if (this.caseList.length > 0) {
+					return '没有更多啦';
+				} else {
+					return '暂时没有内容';
+				}
+			}
+		},
+		methods: {
+			apiready(){
+				this.data.refresherTriggered = true;
+				this.loadData(false);
+			},
+			loadData(loadMore) {
+				if (this.data.loading) {
+					return;
+				}
+				this.data.loading = true;
+				var that = this;
+				var limit = 10;
+				var skip = loadMore?that.data.skip+1:1;
+				let params = {
+					data:{
+						values:{
+							status: 1,
+							skip: skip,
+							limit: limit
+						}
+					}
+				}
+				Model.getCasesList(params, (res) => {
+					if (res && res.status == 0) {
+						let items = res.data.items;
+						that.data.haveMoreData = items.length == limit;
+						if (loadMore) {
+							that.data.caseList = that.data.caseList.concat(items);
+						} else {
+							that.data.caseList = items;
+						}
+						that.data.skip = skip;
+					} else {
+						that.data.haveMoreData = false;
+					}
+					that.data.loading = false;
+					that.data.refresherTriggered = false;
+				});
+			},
+			//打开案例详情页
+			openCaseInfo: function (e) {
+				var id = e.currentTarget.dataset.id;
+				$util.openWin({
+					name: 'detail',
+					url: '../case-info/case-info.stml',
+					title: '详情',
+					pageParam: {
+						id: id
+					}
+				});
+			},
+			/*下拉刷新页面*/
+			onrefresherrefresh(){
+				this.data.refresherTriggered = true;
+				this.loadData(false);
+			},
+			onscrolltolower() {
+				if (this.data.haveMoreData) {
+					this.loadData(true);
+				}
+			},
+			/**
+			 * 用户点击右上角分享
+			 */
+			onShareAppMessage() {
+
+			},
+			onShareTimeline(){
+				
+			}
+		}
+	}
+</script>
+<style>
+    .main {
+        height: 100%;
+    }
+	.item{
+		flex-direction: row;
+		height: 120px;
+		padding: 10px 15px;
+		border-bottom: 1px solid #f1f1f1;
+		box-sizing: border-box;
+	}
+	.item-img{
+		width: 100px;
+		height: 100px;
+		margin-right: 16px;
+	}
+	.item-title{
+		font-size: 14px;
+		color: #333;
+		flex: 1;
+	}    
+	.footer {
+        height: 44px;
+        justify-content: center;
+        align-items: center;
+    }
+    .loadDesc {
+        width: 200px;
+        text-align: center;
+    }
+</style>

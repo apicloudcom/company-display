@@ -1,0 +1,43 @@
+{
+  "name": "root",
+  "hideNavigationBar": false,
+  "navigationBar": {
+    "background": "#fff",
+    "color": "#000",
+    "hideBackButton": true
+  },
+  "tabBar": {
+    "scrollEnabled": false,
+    "background": "#fff",
+    "shadow": "#f1f1f1",
+    "color": "#5e5e5e",
+    "selectedColor": "#333333",
+    "preload": 0,
+    "frames": [{
+      "name": "page1",
+      "url": "pages/index/index.stml",
+      "title": "首页"
+    }, {
+      "name": "page2",
+      "url": "pages/case/case.stml",
+      "title": "案例"
+    }, {
+      "name": "page3",
+      "url": "pages/join/join.stml",
+      "title": "加盟代理"
+    }],
+    "list": [{
+      "iconPath": "images/toolbar/home@no_selected.png",
+      "selectedIconPath": "images/toolbar/home@selected.png",
+      "text": "首页"
+    }, {
+      "iconPath": "images/toolbar/case@no_selected.png",
+      "selectedIconPath": "images/toolbar/case@selected.png",
+      "text": "案例"
+    }, {
+      "iconPath": "images/toolbar/join@no_selected.png",
+      "selectedIconPath": "images/toolbar/join@selected.png",
+      "text": "加盟代理"
+    }]
+  }
+}

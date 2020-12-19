@@ -1,0 +1,35 @@
+<template>
+    <view class="main">
+		<frame v-if="$util.isApp()" class="web-view" name="web" url={api.pageParam.link}></frame>
+		<web-view v-else class="web-view" src={api.pageParam.link}></web-view>
+    </view>
+</template>
+<script>
+	import $util from '../../utils/util.js';
+	export default {
+		name: 'web',
+		data() {
+			return{
+			}
+		},
+		methods: {
+			apiready(){
+
+			},
+			/**
+			 * 用户点击右上角分享
+			 */
+			onShareAppMessage() {
+
+			},
+			onShareTimeline(){
+				
+			}
+		}
+	}
+</script>
+<style>
+    .main, .web-view {
+        height: 100%;
+    }
+</style>

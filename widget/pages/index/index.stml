@@ -1,0 +1,182 @@
+<template>
+	<scroll-view class="main" scroll-y enable-back-to-top refresher-enabled refresher-triggered={refresherTriggered} onrefresherrefresh={this.onrefresherrefresh}>
+		<view style={'height:'+swiperHeight+'px;'} class="swiper-box">
+			<swiper class="swiper" autoplay indicator-dots indicator-color="rgba(255,255,255,0.2)" indicator-active-color="rgba(51,51,51,1)">
+				<swiper-item v-for="(item_,index_) in bannersList" data-index={index_} onclick="bindBanner">
+					<image src={item_.image} class="banner-image" mode="aspectFill"></image>
+				</swiper-item>
+			</swiper>
+		</view>
+		<view class="cate">
+			<image style={'width:'+cateItemWidth+'px;height:'+(cateItemWidth*0.41)+'px;'} class="cate-item" src={item} v-for="(item,index) in advantageList"/>
+		</view>
+		<view class="goods">
+			<rich-text v-if={{product_description}} nodes={product_description} />
+		</view>
+		<view class="about">
+			<rich-text v-if={{about_us}} nodes={about_us} />
+		</view>
+	</scroll-view>
+</template>
+<script>
+	import {Model} from "../../utils/model.js"
+	import $util from "../../utils/util.js"
+	export default {
+		name: 'index',
+		data() {
+			return{
+				bannersList: [], //1外链2内链3图文
+				advantageList: [],
+				product_description: '',
+				about_us: '',
+				refresherTriggered: false
+			}
+		},
+		computed:{
+			swiperHeight(){
+				return api.winWidth*0.42;
+			},
+			cateItemWidth(){
+				return parseInt((api.winWidth-32)/2);
+			}
+		},
+		methods: {
+			apiready() {
+				api.addEventListener({
+					name:'tabitembtn'
+				}, function(ret){
+					var hideNavigationBar = ret.index == 2;
+					api.setTabLayoutAttr({
+						hideNavigationBar: hideNavigationBar,
+						animated: false
+					});
+					api.setTabBarAttr({
+						index: ret.index
+					});
+				});
+
+				api.showProgress({
+					title: '加载中'
+				});
+				
+				this.loadData();
+			},
+			loadData() {
+				this.getbannersList();
+				this.getProjectConfigssInfo();
+			},
+			//获取轮播图
+			getbannersList() {
+				var that = this;
+				const params = {}
+				Model.getbannersList(params, (res) => {
+					if (res && res.status == 0) {
+						that.data.bannersList = res.data.items;
+					}
+					api.hideProgress();
+				});
+			},
+			//获取系统配置
+			getProjectConfigssInfo() {
+				var that = this;
+				const params = {}
+				Model.getProjectConfigssInfo(params, (res) => {
+					if (res && res.status == 0) {
+						let info = res.data;
+						that.data.advantageList = [info.advantage_img_one,info.advantage_img_two,info.advantage_img_three,info.advantage_img_four];
+						setTimeout(function(){
+							that.data.product_description = $util.fitRichText(info.product_description, api.winWidth);
+							that.data.about_us = $util.fitRichText(info.about_us, api.winWidth);
+						}, 100);
+					}
+					api.hideProgress();
+				});
+			},
+			/*下拉刷新页面*/
+			onrefresherrefresh() {
+				this.data.refresherTriggered = true;
+				this.loadData();
+				setTimeout(()=>{
+					this.data.refresherTriggered = false;
+				}, 1500);
+			},
+			bindBanner(e) {
+				var index = e.currentTarget.dataset.index;
+				var item = this.data.bannersList[index];
+				var id = item.id;
+				if (item.type == 1) {
+					this.openWin({
+						url: '../web/web.stml',
+						pageParam: {
+							link: item.link
+						}
+					});
+				} else if (item.type == 2) {
+					this.openWin({
+						url: '../case-info/case-info.stml',
+						pageParam: {
+							id: item.page_name
+						}
+					});
+				} else if (item.type == 3) {
+					this.openWin({
+						url: '../banner-info/banner-info.stml',
+						pageParam: {
+							id: item.id
+						}
+					});
+				}
+			},
+			openWin(param) {
+				$util.openWin({
+					name: 'detail',
+					url: param.url,
+					title: '详情',
+					pageParam: param.pageParam
+				});
+			},
+			/**
+			 * 用户点击右上角分享
+			 */
+			onShareAppMessage() {
+
+			},
+			onShareTimeline(){
+				
+			}
+		}
+	}
+</script>
+<style>
+.main {
+  width: 100%;
+  height: 100%;
+}
+.swiper-box {
+  padding: 5px 15px;
+  width: 100%;
+}
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+.banner-image {
+  width: 100%;
+  height: 100%;
+}
+.cate{
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 0 15px 15px;
+}
+.cate-item{
+  margin-right: 1px;
+  margin-bottom: 5px;
+}
+.goods{
+  margin-bottom: 4px;
+}
+.about{
+  padding: 0 5px;
+}
+</style>

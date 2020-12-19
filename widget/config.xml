@@ -1,0 +1,46 @@
+ <widget id="A6152877648372"  version="0.0.1">
+
+    <name>enterpriseShowConsult</name>
+
+    <description>
+
+        Example For APICloud.
+
+    </description>
+
+    <author email="developer@apicloud.com" href="http://www.apicloud.com">
+
+        Developer
+
+    </author>
+
+    <content src="config.json" />
+
+    <access origin="*" />
+
+	<preference name="windowBackground" value="#fff"/>
+
+	<preference name="autoLaunch" value="true"/>
+
+	<preference name="debug" value="true"/>
+
+	<preference name="statusBarAppearance" value="true"/>
+
+	<permission name="readPhoneState" />
+
+	<permission name="camera" />
+
+	<permission name="record" />
+
+	<permission name="location" />
+
+	<permission name="fileSystem" />
+
+	<permission name="internet" />
+
+	<permission name="bootCompleted" />
+
+	<permission name="hardware" />
+
+</widget>
+

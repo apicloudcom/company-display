@@ -1,0 +1,84 @@
+<template>
+	<view class="main">
+		<view class="box">
+			<text class="title">{title}</text>
+			<text class="date">{date}</text>
+		</view>
+		<rich-text class="content" nodes={content}></rich-text>
+	</view>
+</template>
+<script>
+	import {Model} from "../../utils/model.js"
+	import formatTime from "../../utils/time.js"
+	import $util from "../../utils/util.js"
+	export default {
+		name: 'banner-info',
+		data() {
+			return{
+				title: '',
+				content: '',
+				date:''
+			}
+		},
+		methods: {
+			apiready() {
+				let id = api.pageParam.id;
+				api.showProgress();
+				this.getDetailInfo(id);
+			},
+			//获取详情
+			getDetailInfo(id) {
+				var that = this;
+				const params = {
+					data:{
+						values:{
+							id: id
+						}
+					}
+				}
+				Model.getbannersInfo(params, (res, err) => {
+					if (res && res.status == 0) {
+						that.data.title = res.data.title;
+						that.data.date = formatTime(res.data.creat_time, 'Y-M-D h:m:s');
+						that.data.content = $util.fitRichText(res.data.content, api.winWidth-30);
+					}
+					api.hideProgress();
+				});
+			},
+			/**
+			 * 用户点击右上角分享
+			 */
+			onShareAppMessage() {
+
+			},
+			onShareTimeline(){
+				
+			}
+		}
+	}
+</script>
+<style>
+.main{
+  background-color: #F7F7F7;
+  height: 100%;
+}
+.box{
+  padding: 10px 15px;
+  background-color: #fff;
+  margin-bottom: 5px;
+}
+.title{
+  color: #262626;
+  font-size: 18px;
+}
+.date{
+  margin-top: 5px;
+  color: #999;
+  font-size: 12px;
+}
+.content{
+  flex: 1;
+  background-color: #fff;
+  padding: 10px 15px;
+}
+</style>
