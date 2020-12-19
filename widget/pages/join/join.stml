@@ -1,5 +1,5 @@
 <template>
-	<scroll-view class="main" scroll-y>
+	<scroll-view class="main" scroll-y scroll-into-view={viewId} scroll-with-animation enable-back-to-top refresher-enabled refresher-threshold="90" refresher-triggered={refresherTriggered} onrefresherrefresh={this.onrefresherrefresh}>
 		<image class="cover" src="../../images/img/1.png" mode="widthFix"></image>
 		<!-- 分类列表 -->
 		<view class="cate">
@@ -8,6 +8,13 @@
 				<text class="cate-word">{item.title}</text>
 			</view>
 		</view>
+    <!-- 分类内容 -->
+    <view class="content">
+      <view class="content-item" v-for="(item,index) in list" id={'content'+item.id}>
+        <text class="content-title">{item.title}</text>
+        <rich-text nodes={item.content} />
+      </view>
+    </view>
 		<!-- 加盟 -->
 		<view class="join">
 			<text class="join-title">申请加盟</text>
@@ -31,15 +38,20 @@ export default {
 		return{
 			list: [],
 			name: '',
-			tel: ''
+      tel: '',
+      viewId: '',
+      refresherTriggered: false
 		}
 	},
 	methods: {
 		apiready(){
-      this.getFranchiseList();
+      this.getFranchiseList(true);
     },
     onitemclick(e) {
       var id = e.currentTarget.dataset.id;
+      this.data.viewId = 'content' + id;
+      return;
+
       $util.openWin({
         name: 'detail',
         url: '../join-cate-info/join-cate-info.stml',
@@ -89,15 +101,20 @@ export default {
       });
     },
     //获取加盟代理内容列表
-    getFranchiseList() {
-      api.showProgress();
+    getFranchiseList(showProgress) {
+      if (showProgress) {
+        api.showProgress();
+      }
       var that = this;
       const params = {}
       Model.getFranchiseList(params, (res) => {
         if (res && res.status == 0) {
           that.data.list = res.data.items;
         }
-        api.hideProgress();
+        if (showProgress) {
+          api.hideProgress();
+        }
+				that.data.refresherTriggered = false;
       });
     },
     setNameValue(e) {
@@ -111,6 +128,11 @@ export default {
         msg:msg,
         location:'middle'
       });
+    },
+    /*下拉刷新页面*/
+    onrefresherrefresh(){
+      this.data.refresherTriggered = true;
+      this.getFranchiseList(false);
     },
     /**
      * 用户点击右上角分享
@@ -128,6 +150,7 @@ export default {
 .main {
   height: 100%;
   background-color: #F7F7F7;
+  background-attachment:fixed;
 }
 .cover {
   width: 100%;
@@ -160,9 +183,10 @@ export default {
 .content {
   padding: 10px 15px;
   background-color: #fff;
-  top: -18rpx;
+  top: -9px;
 }
 .content-title{
+  font-weight: 500;
   padding: 10px 0;
 }
 .join {

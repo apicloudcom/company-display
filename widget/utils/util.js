@@ -7,7 +7,10 @@ const $util = {
             pageParam: param.pageParam||{},
             hideNavigationBar: false,
             navigationBar:{
-                shadow: '#fff'
+                shadow: '#fff',
+                backButton: {
+                    iconPath: 'widget://images/back/back.png'
+                }
             }
         };
         if (this.isApp()) {

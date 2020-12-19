@@ -70,6 +70,7 @@
 .title{
   color: #262626;
   font-size: 18px;
+	font-weight: 500;
 }
 .date{
   margin-top: 5px;

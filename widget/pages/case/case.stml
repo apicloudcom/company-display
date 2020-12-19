@@ -117,16 +117,22 @@
 		flex-direction: row;
 		height: 120px;
 		padding: 10px 15px;
-		border-bottom: 1px solid #f1f1f1;
+		/* border-bottom: 1px solid #f1f1f1; */
 		box-sizing: border-box;
+	}
+	.item:active {
+		opacity: 0.8;
 	}
 	.item-img{
 		width: 100px;
 		height: 100px;
 		margin-right: 16px;
+		border: 1px solid #f1f1f1;
+		border-radius: 8px;
 	}
 	.item-title{
 		font-size: 14px;
+		font-weight: 500;
 		color: #333;
 		flex: 1;
 	}    
