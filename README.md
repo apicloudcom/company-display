@@ -8,11 +8,7 @@
 
 ### 效果图
 
-<img style="float: left;" src="https://docs.apicloud.com/img/docImage/apicloud/EnterpriseShow-template-description/1.png" width="200px" height="auto"/>
-<img style="float: left;" src="https://docs.apicloud.com/img/docImage/apicloud/EnterpriseShow-template-description/2.png" width="200px" height="auto"/>
-<img style="float: left;" src="https://docs.apicloud.com/img/docImage/apicloud/EnterpriseShow-template-description/3.png" width="200px" height="auto"/>
-<img style="float: left;" src="https://docs.apicloud.com/img/docImage/apicloud/EnterpriseShow-template-description/4.png" width="200px" height="auto"/>
-<div style="clear: both;"></div>
+![preview](docs/preview.png)
 
 ### 源码目录结构介绍
 
