@@ -8,7 +8,7 @@
 
 ### 效果图
 
-![preview](docs/preview.png)
+![preview](docs/preview.jpg)
 
 ### 源码目录结构介绍
 
