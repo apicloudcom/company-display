@@ -31,7 +31,6 @@
 </template>
 <script>
 import {Model} from '../../utils/model.js';
-import $util from '../../utils/util.js';
 export default {
 	name: 'join',
 	data() {
@@ -51,16 +50,6 @@ export default {
       var id = e.currentTarget.dataset.id;
       this.data.viewId = 'content' + id;
       this.data.viewId = null;
-      return;
-
-      $util.openWin({
-        name: 'detail',
-        url: '../join-cate-info/join-cate-info.stml',
-        title: '详情',
-        pageParam: {
-          id: id
-        }
-      });
     },
     //提交加盟
     submit() {
