@@ -269,7 +269,7 @@ onitemclick(e) {
 
 ## 平台差异化处理
 
-在多端开发中，难买会遇到不同平台差异化的地方，需要在运行期间做判断处理，为此在 utils/util.js 中封装了 isApp 方法，里面通过 api.platform 属性判断来当前运行环境。
+在多端开发中，难免会遇到不同平台差异化的地方，需要在运行期间做判断处理，为此在 utils/util.js 中封装了 isApp 方法，里面通过 api.platform 属性判断当前运行环境。
 
 ```js
 // util.js
