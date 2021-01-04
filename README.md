@@ -2,9 +2,9 @@
 
 此源码为企业展示类型，主要功能包括企业信息展示、案例展示、加盟申请等。包含前后端，其中前端代码使用avm.js多端技术开发，可同时编译为Android & iOS App以及微信小程序；后端使用APICloud数据云3.0云函数自定义接口。
 
-详细了解[avm多端开发技术](https://docs.apicloud.com/apicloud3/)。
+详细了解[avm多端开发技术](https://docs.apicloud.com/apicloud3?uzchannel=30)。
 
-详细了解[数据云服务](https://docs.apicloud.com/Cloud-API/sentosa)。
+详细了解[数据云服务](https://docs.apicloud.com/Cloud-API/sentosa?uzchannel=30)。
 
 ### 效果图
 
@@ -30,12 +30,12 @@
 
 ### 使用步骤
 
-1. 使用[APICloud Studio 3](https://www.apicloud.com/studio3) 作为开发工具。
+1. 使用[APICloud Studio 3](https://www.apicloud.com/studio3?uzchannel=30) 作为开发工具。
 2. 下载本源码。
 3. 在开发工具中新建项目，并将本源码导入新建的项目中，注意更新config.xml中的appid为你项目的appid。
 4. 使用AppLoader进行真机同步调试预览。
 5. 或者提交项目源码，并为当前项目云编译自定义Loader进行真机同步调试预览。
-6. [云编译](https://www.apicloud.com/appoverview) 生成Android & iOS App以及微信小程序源码包。
+6. [云编译](https://www.apicloud.com/appoverview?uzchannel=30) 生成Android & iOS App以及微信小程序源码包。
 
 
 ### 联系我们
@@ -44,8 +44,8 @@
 
 官方技术交流群：339762594
 
-官方社区：<a href='https://community.apicloud.com/' target='_blank'>https://community.apicloud.com/</a>
+官方社区：<a href='https://community.apicloud.com/?uzchannel=30' target='_blank'>https://community.apicloud.com/</a>
 
 ## License
 
-MIT © [APICloud](https://www.apicloud.com)
+MIT © [APICloud](https://www.apicloud.com/?uzchannel=30)

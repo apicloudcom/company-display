@@ -4,20 +4,20 @@
 > 
 > 项目源码在 https://github.com/apicloudcom/company-display 仓库的 widget 目录下。
 
-项目中前端技术要点包括 TabLayout 布局、swiper 轮播图、rich-text 富文本、scroll-view 滚动视图、下拉刷新等。使用 APICloud 多端技术进行开发，实现一套代码多端运行，支持编译成 Android & iOS App 以及微信小程序。
+项目中前端采用 [avm 多端开发技术](https://docs.apicloud.com/apicloud3?uzchannel=30)进行开发，要点包括 TabLayout 布局、swiper 轮播图、rich-text 富文本、scroll-view 滚动视图、下拉刷新等。使用 APICloud 多端技术进行开发，实现一套代码多端运行，支持编译成 Android & iOS App 以及微信小程序。
 
-项目后端则是使用的 [APICloud 数据云 3.0](https://docs.apicloud.com/Cloud-API/sentosa) 自定义云函数来构建的。
+项目后端则是使用的 [APICloud 数据云 3.0](https://docs.apicloud.com/Cloud-API/sentosa?uzchannel=30) 自定义云函数来构建的。
 
 ![preview](preview.jpg)
 
 ### 使用步骤
 
-1. 使用 [APICloud Studio 3](https://www.apicloud.com/studio3) 作为开发工具。
+1. 使用 [APICloud Studio 3](https://www.apicloud.com/studio3?uzchannel=30) 作为开发工具。
 2. 下载本项目源码。
 3. 在开发工具中新建项目，并将本源码导入新建的项目中，注意更新 config.xml 中的 appid 为你项目的 appid。
 4. 使用 AppLoader 进行真机同步调试预览。
 5. 或者提交项目源码，并为当前项目云编译自定义 Loader 进行真机同步调试预览。
-6. [云编译](https://www.apicloud.com/appoverview) 生成 Android & iOS App 以及微信小程序源码包。
+6. [云编译](https://www.apicloud.com/appoverview?uzchannel=30) 生成 Android & iOS App 以及微信小程序源码包。
 
 如果之前未接触过 APICloud 开发，建议先了解一个简单项目的初始化、预览、调试和打包等操作，请参考 [APICloud 多端开发快速上手教程](https://github.com/apicloudcom/hello-app/blob/main/README.md)。
 
