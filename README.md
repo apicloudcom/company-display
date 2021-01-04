@@ -44,7 +44,7 @@
 
 官方技术交流群：339762594
 
-官方社区：<a href='https://community.apicloud.com/?uzchannel=30' target='_blank'>https://community.apicloud.com/</a>
+官方社区：[https://community.apicloud.com/](https://community.apicloud.com/?uzchannel=30)
 
 ## License
 
