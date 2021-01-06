@@ -3,6 +3,8 @@
 > 此项目为企业展示类应用，主要功能包括企业信息展示、案例展示、加盟申请等。
 > 
 > 项目源码在 https://github.com/apicloudcom/company-display 仓库的 widget 目录下。
+> 
+> 如果觉得对您有帮助，希望给个 star 鼓励一下。
 
 项目中前端采用 [avm 多端开发技术](https://docs.apicloud.com/apicloud3?uzchannel=30)进行开发，要点包括 TabLayout 布局、swiper 轮播图、rich-text 富文本、scroll-view 滚动视图、下拉刷新等。使用 APICloud 多端技术进行开发，实现一套代码多端运行，支持编译成 Android & iOS App 以及微信小程序。
 
