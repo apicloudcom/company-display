@@ -155,8 +155,7 @@
   height: 100%;
 }
 .swiper-box {
-  padding: 5px 15px;
-  width: 100%;
+  margin: 5px 15px;
 }
 .swiper {
   width: 100%;

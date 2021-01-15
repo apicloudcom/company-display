@@ -25,6 +25,12 @@ const $util = {
         }
         return false;
     },
+    isMp(){
+        if (api.platform && api.platform == 'mp') {
+            return true;
+        }
+        return false;
+    },
     fitRichText(richtext, width){
         var str = `<img style="max-width:${width}px;"`;
         var result = richtext.replace(/\<img/gi, str);
